@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from 'react-redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { instance } from './core';
+import { Home } from './pages/home';
+import middleware from './middleware'
+
+const reducer = combineReducers({ instance: instance.store })
+const store = createStore(
+    reducer,
+    applyMiddleware(...middleware)
+  )
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Home />
+    </Provider>
   );
 }
 

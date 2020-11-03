@@ -1,21 +1,24 @@
-import { createStore } from 'redux';
 import * as actions from './actions'
 
 const initialState = createState();
 
 export default function reducer(state = initialState, action) {
+  const { payload } = action;
+
   switch (action.type) {
-    case actions.LOAD_INSTANCES: {
+    case actions.SET_INSTANCE_LOADING: {
       return {
-        loading: true,
-        complete: false,
+        ...state,
+        ...payload
       }
     }
     case actions.ADD_INSTANCE_SUCCESS: {
       const { instances } = state;
+      const updatedInstances = [ ...instances, action.payload];
+
       return {
         ...state,
-        ...([...instances, action.payload])
+        instances: [...updatedInstances]
       }  
     }
     default: 
@@ -53,7 +56,7 @@ function createState() {
       }
     ],
     initialized: false,
-    loading: false,
+    isLoading: false,
     complete: false,
     failed: false,
     error: ''

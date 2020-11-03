@@ -6,9 +6,9 @@ const styles = makeStyles();
 export const Home = () => (
     <div style={styles.container}>
         <header style={styles.header}>
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
+          <h1>
+            Clean Tesla POC
+          </h1>
           <InstanceMenu />
         </header>
       </div>

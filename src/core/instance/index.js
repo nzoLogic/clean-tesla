@@ -1,5 +1,5 @@
 import store from './store';
-import useInstance from './hooks'
+import useInstance from './useInstance'
 import * as actions from './actions'
 
 const instance = {

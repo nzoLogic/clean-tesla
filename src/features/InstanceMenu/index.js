@@ -9,10 +9,7 @@ export const InstanceMenu = () => {
     instances,
     addInstance,
     initialize,
-    initialized,
     isLoading,
-    failed,
-    error
   } = useInstanceMenu();
   /* 
     below we have component specific view layer logic. Notice we define the functionality inline.
@@ -25,7 +22,7 @@ export const InstanceMenu = () => {
   useEffect(() => {
     /* initialize instances by fetching them on initial render */
     initialize();
-  }, []);
+  },[]);
 
   return (
     <div style={styles.container}>
@@ -35,14 +32,14 @@ export const InstanceMenu = () => {
       { showIf(isLoading)(() => <h3>Loading...</h3>) }
       { hideIf(isLoading)(() => (
           instances.map(({ startDay, id}) => (
-            <div style={styles.card}>
-              <p key={id} style={{
-                /* this will be handled in styled components by passing the id through */
-                ...(isSelected(id) && {
-                  ...styles.active
-                }),
-                ...styles.instance,
-              }} onClick={() => setSelectedInstanceId(id)}>
+            <div key={id} style={{
+              ...styles.card,
+              /* this will be handled in styled components by passing the id through */
+              ...(isSelected(id) && {
+                ...styles.active
+              }),
+            }}>
+              <p style={styles.instance} onClick={() => setSelectedInstanceId(id)}>
                 {startDay}
               </p>
             </div>
@@ -68,7 +65,8 @@ function createStyles() {
       width: '100%'
     },
     active: {
-      outline: '1px solid white'
+      backgroundColor: 'rgba(0,0,0,.75)',
+      color: '#fff',
     },
     section: {
       width: '100%',
@@ -81,6 +79,7 @@ function createStyles() {
     },
     card: {
       width: '240px',
+      cursor: 'pointer',
       backgroundColor: '#fff',
       color: '#000',
       margin: '8px'

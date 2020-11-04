@@ -1,4 +1,4 @@
-import { instance } from '../../core';
+import { instance, useCore } from '../../core';
 
 const { useInstance } = instance;
 
@@ -11,7 +11,8 @@ const useInstanceMenu = () => {
     initialized,
     isLoading,
   } = useInstance();
-
+  const core = useCore('instance')(null)
+  console.log(core)
   return {
     instances,
     complete,

@@ -1,5 +1,5 @@
 import * as actions from './actions';
-
-export default {
-  actions
+const api = {
+  actions,
 }
+export default api
